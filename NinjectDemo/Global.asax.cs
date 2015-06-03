@@ -43,7 +43,7 @@ namespace NinjectDemo
         private void RegisterServices(IKernel kernel)
         {
             kernel.Load(Assembly.GetExecutingAssembly());
-            kernel.Bind<IDemoService>().To<DemoService>();
+            kernel.Bind<IDemoService>().To<DemoService>().InRequestScope();
             // e.g. kernel.Load(Assembly.GetExecutingAssembly());
         }
 

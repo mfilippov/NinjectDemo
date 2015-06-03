@@ -1,7 +1,9 @@
-﻿namespace NinjectDemo.Services
+﻿using System.Collections.Generic;
+
+namespace NinjectDemo.Services
 {
     public interface IDemoService
     {
-        string GetData();
+        List<string> GetData();
     }
 }

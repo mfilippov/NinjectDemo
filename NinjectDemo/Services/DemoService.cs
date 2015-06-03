@@ -1,10 +1,12 @@
-﻿namespace NinjectDemo.Services
+﻿using System.Collections.Generic;
+
+namespace NinjectDemo.Services
 {
     public class DemoService : IDemoService
     {
-        public string GetData()
+        public List<string> GetData()
         {
-            return "Super important data";
+            return new List<string> { "Super important data" };
         }
     }
 }

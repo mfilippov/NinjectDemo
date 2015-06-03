@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
+using NinjectDemo;
 using Owin;
 
-[assembly: OwinStartup(typeof(NinjectDemo.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace NinjectDemo
 {

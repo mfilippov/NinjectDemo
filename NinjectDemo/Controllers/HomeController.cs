@@ -1,21 +1,21 @@
 ﻿using System.Web.Mvc;
-using NinjectDemo.Services;
 
 namespace NinjectDemo.Controllers
 {
+    [RoutePrefix("")]
     public class HomeController : Controller
     {
-        private readonly IDemoService _demoService;
-
-        public HomeController(IDemoService demoService)
-        {
-            _demoService = demoService;
-        }
-
+        [Route("")]
         // GET: Home
         public ActionResult Index()
         {
-            return View(_demoService.GetData());
+            return Content(@"<a href=""/bug"">Click me for crash!</a>");
+        }
+
+        [Route("bug")]
+        public ActionResult BugPage(int id)
+        {
+            return Content("This is page with bug");
         }
     }
 }

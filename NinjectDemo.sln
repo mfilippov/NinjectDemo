@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjectDemo", "NinjectDemo\NinjectDemo.csproj", "{EA64B870-E682-4F2C-BC24-27860676BA0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjectDemo", "src\NinjectDemo\NinjectDemo.csproj", "{EA64B870-E682-4F2C-BC24-27860676BA0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

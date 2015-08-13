@@ -43,6 +43,8 @@ namespace NinjectDemo
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RouteTable.Routes.MapMvcAttributeRoutes();
+
+            
         }
 
         protected void Application_Error(object sender, EventArgs args)

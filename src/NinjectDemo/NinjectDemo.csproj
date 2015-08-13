@@ -122,6 +122,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Log\" />
   </ItemGroup>
   <PropertyGroup>

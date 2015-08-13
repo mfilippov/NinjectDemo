@@ -11,12 +11,12 @@ namespace NinjectDemo.Infrastructure.Logging
         public string[] IpList { get; set; }
         public string AppSettingsKey { get; set; }
 
-        public bool CheckIp(string allowedIp)
+        public bool CheckIp(string ip)
         {
-            IpList = IpList ?? (string.IsNullOrEmpty(AppSettingsKey) && ConfigurationManager.AppSettings[AppSettingsKey] != null
+            IpList = IpList ?? ((!string.IsNullOrEmpty(AppSettingsKey) && ConfigurationManager.AppSettings[AppSettingsKey] != null)
                 ? ConfigurationManager.AppSettings[AppSettingsKey].Split(';')
                 : new string[] { });
-            return IpList.Contains(allowedIp);
+            return IpList.Contains(ip);
         }
 
         public void OnAuthorization(AuthorizationContext filterContext)

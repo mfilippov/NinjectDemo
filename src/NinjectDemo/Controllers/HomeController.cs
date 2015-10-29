@@ -1,21 +1,40 @@
 ﻿using System.Web.Mvc;
+using Serilog;
+using NinjectDemo.Services;
+using System;
 
 namespace NinjectDemo.Controllers
 {
     [RoutePrefix("")]
     public class HomeController : Controller
     {
+        ILogger _logger;
+
+        IDemoService _demoService;
+
+        public HomeController (ILogger logger, IDemoService demoService)
+        {
+            _demoService = demoService;
+            _logger = logger;
+            
+        }
         [Route("")]
-        // GET: Home
         public ActionResult Index()
         {
-            return Content(@"<a href=""/bug"">Click me for crash!</a>");
+            _logger.Information("Get index");
+            return View(_demoService.GetData());
         }
 
         [Route("bug")]
         public ActionResult BugPage(int id)
         {
-            return Content("This is page with bug");
+            return Content("Shit happend!");
+        }
+
+        [Route("error")]
+        public ActionResult Error() 
+        {
+            return View();
         }
     }
 }

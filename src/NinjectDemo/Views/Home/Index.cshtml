@@ -1,7 +1,10 @@
-﻿@{
+﻿@model System.Collections.Generic.List<string>
+@using System.Linq;
+@{
     ViewBag.Title = "Index";
 }
 <h1>Welcome to Ninject MVC</h1>
 <p>
-    Huy
+    <h2>Magic data is: @Model.First()</h2>
+    <a href="/bug">Click me for crash!</a>
 </p>

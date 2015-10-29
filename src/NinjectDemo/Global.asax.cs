@@ -3,27 +3,26 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Elmah;
 using Ninject;
 using Ninject.Web.Common;
-using NinjectDemo.Infrastructure.Logging;
 using NinjectDemo.Services;
+using Serilog;
 
 namespace NinjectDemo
 {
     public class Global : NinjectHttpApplication
     {
+        IKernel _kernel;
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new ElmahHandledErrorLoggerFilter());
-            filters.Add(new IpAccessListAttribute());
         }
         
         protected override IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
-            RegisterServices(kernel);
-            return kernel;
+            _kernel = new StandardKernel();
+            RegisterServices(_kernel);
+            return _kernel;
         }
 
         /// <summary>
@@ -34,6 +33,7 @@ namespace NinjectDemo
         {
             kernel.Load(Assembly.GetExecutingAssembly());
             kernel.Bind<IDemoService>().To<DemoService>().InRequestScope();
+            kernel.Bind<ILogger>().ToConstant(new LoggerConfiguration().WriteTo.Console().CreateLogger());
         }
 
         protected override void OnApplicationStarted()
@@ -48,8 +48,9 @@ namespace NinjectDemo
         }
 
         protected void Application_Error(object sender, EventArgs args)
-        {
-            ErrorLog.GetDefault(HttpContext.Current).Log(new Error(Server.GetLastError(), HttpContext.Current));
+        {            
+            _kernel.Get<ILogger>().Error(Server.GetLastError(), "Unhandled error");
+            Response.Redirect("/error");
         }
 
     }

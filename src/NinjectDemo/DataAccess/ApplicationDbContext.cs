@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using Domain.NinjectDemo;
+using NinjectDemo.Domain;
 
 namespace NinjectDemo.DataAccess
 {
@@ -11,15 +11,8 @@ namespace NinjectDemo.DataAccess
 		{
 		}
 
-		public DbSet<Article> Articles { get; set; }
-		public DbSet<Course> Courses { get; set; }
-		public DbSet<Lecture> Lectures { get; set; }
-		public DbSet<Step> Steps { get; set; }
 		public DbSet<User> Users { get; set; }       
-		public DbSet<StepProgress> StepProgresses { get; set; }
-		public DbSet<Subscription> Subscriptions { get; set; }
-		public DbSet<Transaction> TransactionLogs { get; set; }
-
+		
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>().ToTable("Users");
